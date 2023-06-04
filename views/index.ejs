@@ -24,12 +24,24 @@
       </form>
     </div>
     <div>
-      <iframe name="formSendingSearch" style="display: none;"></iframe>
-      <form method="post" action="/user/:id" target="formSendingSearch">
+      <form action="" id="fetchForm">
         <label for="search_name">Search Name</label>
         <input type="text" id="search-name" name="search_name" placeholder="Enter name"><br><br>
         <button type="submit" id="search">Search</button>
       </form>
+
+      <script>
+        let fetchForm = document.querySelector('#fetchForm')
+        fetchForm.addEventListener('submit', (event) => {
+          event.preventDefault()
+
+          let searchName = document.querySelector('#search-name')
+          console.log(searchName.value)
+          searchName.value = ""
+
+        })
+        
+      </script>
     </div>
 
   </main>
