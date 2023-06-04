@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>
+    <%= myTodos %>
+  </h1>
+  <main>
+    <div style="margin-bottom: 20px;">
+      <iframe name="formSending" style="display: none;"></iframe>
+      <form method="post" action="/todo" target="formSending">
+        <label for="name">Name</label>
+        <input type="text" id="input-name" name="name" placeholder="Enter name"><br><br>
+        <label for="task">Tasks</label>
+        <input type="text" id="input-task" name="todos" placeholder="Enter task"><br><br>
+        <button type="submit" id="submit-data">Submit</button>
+      </form>
+    </div>
+    <div>
+      <iframe name="formSendingSearch" style="display: none;"></iframe>
+      <form method="post" action="/user/:id=search_name" target="formSendingSearch">
+        <label for="search_name">Search Name</label>
+        <input type="text" id="search-name" name="search_name" placeholder="Enter name"><br><br>
+        <button type="submit" id="search">Search</button>
+      </form>
+    </div>
+
+  </main>
+</body>
+
 </html>
