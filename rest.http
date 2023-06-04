@@ -16,4 +16,12 @@ Content-Type: application/json
 }
 
 ### fetch user
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+    "search_name": "juha"
+}
+
+### fetch user
 GET http://localhost:3000/user/juha

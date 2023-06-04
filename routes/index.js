@@ -1,9 +1,10 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const axios = require("axios");
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
-  res.render("index", { title: "Arcane", myTodos: "My todos" });
+  res.render("index", { title: "Arcane" });
 });
 
 // Saving users
@@ -17,7 +18,6 @@ router.post("/todo", (req, res, next) => {
     todos: [todos],
   };
 
-  //const user = Users.find(element => element.name === name)
   const foundUser = Users.findIndex((element) => element.name === name);
   if (foundUser !== -1) {
     Users[foundUser].todos.push(req.body.todos);
@@ -31,12 +31,23 @@ router.post("/todo", (req, res, next) => {
   }
 });
 
-router.post("/user/:id", (req, res) => {
+// fetch single user
+router.post("/user", (req, res) => {
   const search_name = req.body.search_name;
   const foundUserReq = Users.find((element) => element.name === search_name);
   if (foundUserReq) {
-    //console.log(foundUserReq)
-    res.json(foundUserReq);
+    //console.log(foundUserReq);
+    const url = `http://localhost:3000/user/${search_name}`;
+
+    axios.get(url)
+      .then((response) => {
+        console.log(response.data);
+        const jsonData = response.data;
+        res.send(jsonData)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   } else {
     res.send("User not found");
   }
