@@ -3,7 +3,6 @@
 function Search() {
   let searchName = document.querySelector("#search-name");
   const url = `http://localhost:3000/user/${searchName.value}`;
-  const userInfo = document.querySelector("#user-info");
   const deleteUserResponse = document.querySelector("#delete-todo-response");
 
   axios
@@ -13,6 +12,7 @@ function Search() {
       const todos = response?.data?.todos;
 
       if (user) {
+        const userInfo = document.querySelector("#user-info");
         const userName = document.createElement("p");
         const deleteButton = document.createElement("button");
         deleteButton.setAttribute("id", "delete-user");
