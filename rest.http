@@ -7,13 +7,6 @@ Content-Type: application/json
    "todos": "code"
 }
 
-### fetch user
-POST http://localhost:3000/user/juha
-Content-Type: application/json
-
-{
-    "search_name": "juha"
-}
 
 ### fetch user
 POST http://localhost:3000/user
@@ -25,3 +18,6 @@ Content-Type: application/json
 
 ### fetch user
 GET http://localhost:3000/user/juha
+
+### delete user
+DELETE http://localhost:3000/user/juha

@@ -1,7 +1,10 @@
 <h3>Search User</h3>
 <iframe name="formSendingSearch" style="display: none;"></iframe>
-<form method="post" action="/user" target="formSendingSearch">
-  <label for="search_name">Search Name</label>
-  <input type="text" id="search-name" name="search_name" placeholder="Enter name"><br><br>
-  <button type="submit" id="search">Search</button>
+<form target="formSendingSearch" id="fetchForm">
+    <label for="search_name">Search Name</label>
+    <input type="text" id="search-name" name="search_name" placeholder="Enter name"><br><br>
+    <button type="submit" id="search" onclick="Search()">Search</button>
 </form>
+<div id="user-info"></div>
+
+<script src="../javascripts/searchUser.js"></script>
