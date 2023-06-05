@@ -4,9 +4,17 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
 #delete-user {
-  margin-top: 30px;
+  margin-top: 15px;
+  margin-left: 30px;
+  background-color: rgb(169, 26, 50);
+  color: #fff;
+}
+
+.delete-task {
+  margin-right: 15px;
+  background-color: rgb(204, 204, 87);
 }
