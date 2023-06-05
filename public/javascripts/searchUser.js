@@ -16,6 +16,7 @@ function Search() {
         const userName = document.createElement("p");
         const deleteButton = document.createElement("button");
         deleteButton.setAttribute("id", "delete-user");
+        deleteButton.className = `del-${user}`
         userName.innerHTML = `Name: ${response.data.name}`;
         deleteButton.innerHTML = `Delete ${user}`;
 
@@ -57,7 +58,7 @@ function Search() {
 
         deleteButton.onclick = function () {
           axios.delete(`http://localhost:3000/user/${user}`);
-          const userElement = document.querySelector("#delete-user");
+          const userElement = document.querySelector(`.del-${user}`);
           userElement.remove();
           userInfo.innerHTML = `<p>User deleted</p>`;
           setTimeout(() => {
