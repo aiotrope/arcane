@@ -45,9 +45,9 @@ router.get("/user/:id", (req, res) => {
 
 router.delete("/user/:id", (req, res) => {
   const { id } = req.params;
-  const foundUserParams = Users.find((element) => element.name === id);
-  if (foundUserParams) {
-    const index = Users.indexOf(foundUserParams);
+  const foundUser = Users.find((element) => element.name === id);
+  if (foundUser) {
+    const index = Users.indexOf(foundUser);
     Users.splice(index, 1);
     console.log([...Users]);
     const checkUser = Users.find((element) => element.name === id);
@@ -56,5 +56,22 @@ router.delete("/user/:id", (req, res) => {
     res.send("User not found");
   }
 });
+
+router.put("/user/:id", (req, res) => {
+  const { id } = req.params;
+  const { todo } = req.body
+  const foundUser = Users.find((element) => element.name === id);
+  if (foundUser) {
+    //console.log(foundUser.todos)
+    const userTodos = foundUser.todos
+    const index = userTodos.indexOf(todo)
+    userTodos.splice(index, 1)
+    console.log([...userTodos])
+    res.send('Task deleted')
+
+  } else {
+    res.send("User not found");
+  }
+})
 
 module.exports = router;

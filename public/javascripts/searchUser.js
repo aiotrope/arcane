@@ -9,17 +9,29 @@ function Search() {
     .get(url)
     .then((response) => {
       const user = response?.data?.name;
+      const todos = response?.data?.todos;
+
       if (user) {
         const userName = document.createElement("p");
-        const userTodos = document.createElement("p");
+        for (let x = 0; x < todos.length; x++) {
+          //console.log(element)
+          todos.toString();
+          var outputValues = todos[x];
+          const userTodos = document.createElement("button");
+          var newContent = document.createTextNode(outputValues);
+          userTodos.appendChild(newContent);
+          //const userInfoDiv = document.getElementById("user-info");
+         userInfo.appendChild(userTodos)
+        }
+        //const userTodos = document.createElement("button");
         const deleteButton = document.createElement("button");
         deleteButton.setAttribute("id", "delete-user");
         userName.innerHTML = `Name: ${response.data.name}`;
-        userTodos.innerHTML = `Todos: [${response.data.todos}]`;
+        //userTodos.innerHTML = `${todos}`;
         deleteButton.innerHTML = `Delete ${user}`;
 
         userInfo.appendChild(userName);
-        userInfo.appendChild(userTodos);
+        //userInfo.appendChild(userTodos);
         userInfo.appendChild(deleteButton);
         deleteButton.onclick = function () {
           axios.delete(`http://localhost:3000/user/${user}`);
@@ -28,10 +40,13 @@ function Search() {
           userInfo.innerHTML = `<p>User deleted</p>`;
           setTimeout(() => {
             userInfo.remove();
-          }, 4000);
+          }, 3000);
         };
       } else {
         userInfo.innerHTML = `<p>User not found</p>`;
+        setTimeout(() => {
+          userInfo.remove();
+        }, 3000);
       }
     })
     .catch((err) => console.error(err));
