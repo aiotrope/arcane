@@ -7,19 +7,33 @@ saveForm.addEventListener("submit", (event) => {
   const inputName = document.querySelector("#input-name");
   const inputTask = document.querySelector("#input-task");
   const url = "http://localhost:3000/todo";
+  let data = { name: inputName.value, todos: inputTask.value };
+  const settings = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+    Cache: "default",
+  };
 
-  axios
-    .post(url, { name: inputName.value, todos: inputTask.value })
-    .then((response) => {
-      //alert(response.data);
-      const responses = document.createElement("p");
-      responses.innerHTML = response.data;
-      saveUserResponse.appendChild(responses);
-      setTimeout(() => {
-        responses.remove();
-      }, 3000);
+  fetch(url, settings)
+    .then((res) => {
+      res
+        .json()
+        .then((data) => {
+          //console.log(data);
+          const responses = document.createElement("p");
+          responses.innerHTML = data.result;
+          saveUserResponse.appendChild(responses);
+          setTimeout(() => {
+            responses.remove();
+          }, 3000);
+        })
+        .catch((e) => console.error(e));
     })
-    .catch((err) => console.error(err));
+    .catch((e) => console.error(e));
 
   inputName.value = "";
   inputTask.value = "";

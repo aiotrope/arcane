@@ -22,13 +22,13 @@ router.post("/todo", (req, res, next) => {
   const foundUser = Users.findIndex((element) => element.name === name);
   if (foundUser !== -1) {
     Users[foundUser].todos.push(req.body.todos);
-    console.log([...Users]);
-    res.send("Todo Added");
+    //console.log([...Users]);
+    res.json({ result: "Todo added" });
   } else {
     Users.push(data);
 
-    console.log([...Users]);
-    res.send("User added");
+    //console.log([...Users]);
+    res.json({ result: "User added" });
   }
 });
 
@@ -37,9 +37,9 @@ router.get("/user/:id", (req, res) => {
   const foundUserParams = Users.find((element) => element.name === id);
   if (foundUserParams) {
     //console.log(foundUserParams)
-    res.json(foundUserParams);
+    res.json({ result: foundUserParams });
   } else {
-    res.send("User not found");
+    res.json({ result: "User not found" });
   }
 });
 
@@ -49,11 +49,11 @@ router.delete("/user/:id", (req, res) => {
   if (foundUser) {
     const index = Users.indexOf(foundUser);
     Users.splice(index, 1);
-    console.log([...Users]);
+    //console.log([...Users]);
     const checkUser = Users.find((element) => element.name === id);
-    if (!checkUser) res.send("User deleted");
+    if (!checkUser) res.json({ result: "User deleted" });
   } else {
-    res.send("User not found");
+    res.json({ result: "User not found" });
   }
 });
 
@@ -66,10 +66,10 @@ router.put("/user/:id", (req, res) => {
     const userTodos = foundUser.todos;
     const index = userTodos.indexOf(todo);
     userTodos.splice(index, 1);
-    console.log([...userTodos]);
-    res.send("Task deleted");
+    //console.log([...userTodos]);
+    res.json({ result: "Task deleted" });
   } else {
-    res.send("User not found");
+    res.json({ result: "User not found" });
   }
 });
 
