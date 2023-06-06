@@ -29,7 +29,7 @@ saveForm.addEventListener("submit", (event) => {
           saveUserResponse.appendChild(responses);
           setTimeout(() => {
             responses.remove();
-            window.location.reload();
+            //window.location.reload();
           }, 3000);
         })
         .catch((e) => console.error(e));
