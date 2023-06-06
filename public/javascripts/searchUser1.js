@@ -28,7 +28,7 @@ searchForm.addEventListener("submit", (event) => {
             //console.log(element)
             const userTodos = document.createElement("button");
             todos.toString();
-            var outputValues = todos[x];
+            const outputValues = todos[x];
 
             userTodos.className = "delete-task";
             let taskAttr = `del-${user}-${outputValues}`;
@@ -37,7 +37,12 @@ searchForm.addEventListener("submit", (event) => {
             userTodos.appendChild(taskName);
             userInfo.appendChild(userTodos);
 
-            var taskSelector = document.querySelector(".delete-task");
+            /* let taskSelector = document.querySelector(
+              `#delete-${outputValues}`
+            ); */
+            var taskSelector = document.querySelector(
+              `#delete-task`
+            );
             userTodos.onclick = function () {
               let data = { todo: taskSelector };
               const settings = {
@@ -47,6 +52,7 @@ searchForm.addEventListener("submit", (event) => {
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify(data),
+                Cache: "default",
               };
 
               fetch(`http://localhost:3000/user/${user}`, settings)
@@ -56,10 +62,12 @@ searchForm.addEventListener("submit", (event) => {
                     .then((data) => {
                       const responses = document.createElement("p");
                       responses.innerHTML = data.result;
-                      taskSelector.remove();
+                      //taskSelector.remove();
+                     
                       deleteUserResponse.appendChild(responses);
                       setTimeout(() => {
                         responses.remove();
+                        window.location.reload()
                       }, 2000);
                     })
                     .catch((e) => console.error(e))
@@ -83,6 +91,7 @@ searchForm.addEventListener("submit", (event) => {
                   .json()
                   .then((data) => {
                     const userElement = document.querySelector(`#delete-user`);
+                    //const userElement = document.querySelector(`.del-${user}`);
                     userElement.remove();
                     userInfo.innerHTML = `<p>${data.result}</p>`;
                     setTimeout(() => {
