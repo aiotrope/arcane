@@ -24,7 +24,7 @@ searchForm.addEventListener("submit", (event) => {
 
           userInfo.appendChild(userName);
 
-          for (let x = 0; x < todos.length; x++) {
+          for (var x = 0; x < todos.length; x++) {
             //console.log(element)
             const userTodos = document.createElement("button");
             todos.toString();
@@ -58,9 +58,12 @@ searchForm.addEventListener("submit", (event) => {
                       responses.innerHTML = data.message;
                       taskSelector.remove();
                       deleteUserResponse.appendChild(responses);
+
                       setTimeout(() => {
                         responses.remove();
-                      }, 2000);
+                        window.location.reload();
+                      }, 1000);
+                      return data;
                     })
                     .catch((e) => console.error(e))
                 )
