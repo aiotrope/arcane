@@ -1,10 +1,11 @@
 "use strict";
 
-function Search() {
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
   let searchName = document.querySelector("#search-name");
   const url = `http://localhost:3000/user/${searchName.value}`;
   const deleteUserResponse = document.querySelector("#delete-todo-response");
-  var userInfo = document.querySelector("#user-info");
+  var userInfo = document.getElementById("user-info");
 
   axios
     .get(url)
@@ -75,4 +76,4 @@ function Search() {
     .catch((err) => console.error(err));
 
   searchName.value = "";
-}
+});
