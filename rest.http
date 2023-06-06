@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
    "name": "juha",
-   "todos": "play"
+   "todos": "code"
 }
 
 ### fetch user
@@ -22,9 +22,10 @@ GET http://localhost:3000/user/juha
 DELETE http://localhost:3000/user/juha
 
 ### delete todo
-PUT http://localhost:3000/user/juha
+PUT http://localhost:3000/user
 Content-Type: application/json
 
 {
+    "search_name": "juha",
     "todo": "code"
 }

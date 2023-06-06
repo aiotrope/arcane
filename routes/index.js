@@ -57,10 +57,9 @@ router.delete("/user/:id", (req, res) => {
   }
 });
 
-router.put("/user/:id", (req, res) => {
-  const { id } = req.params;
-  const { todo } = req.body;
-  const foundUser = Users.find((element) => element.name === id);
+router.put("/user", (req, res) => {
+  const { search_name, todo } = req.body;
+  const foundUser = Users.find((element) => element.name === search_name);
   if (foundUser) {
     //console.log(foundUser.todos)
     const userTodos = foundUser.todos;

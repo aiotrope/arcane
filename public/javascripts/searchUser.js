@@ -39,7 +39,7 @@ searchForm.addEventListener("submit", (event) => {
 
             var taskSelector = document.querySelector(".delete-task");
             userTodos.onclick = function () {
-              let data = { todo: taskSelector };
+              let data = { search_name: user, todo: taskSelector };
               const settings = {
                 method: "PUT",
                 headers: {
@@ -49,7 +49,7 @@ searchForm.addEventListener("submit", (event) => {
                 body: JSON.stringify(data),
               };
 
-              fetch(`http://localhost:3000/user/${user}`, settings)
+              fetch(`http://localhost:3000/user`, settings)
                 .then((res) =>
                   res
                     .json()
