@@ -66,9 +66,10 @@ router.put("/user", (req, res) => {
     const index = userTodos.indexOf(todo);
     userTodos.splice(index, 1);
     //console.log([...userTodos]);
-    res.json({ result: "Task deleted" });
+    console.log(foundUser)
+    res.json({ message: "Task deleted", result: foundUser});
   } else {
-    res.json({ result: "User not found" });
+    res.json({ message: "User not found" });
   }
 });
 

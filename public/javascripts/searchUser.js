@@ -55,7 +55,7 @@ searchForm.addEventListener("submit", (event) => {
                     .json()
                     .then((data) => {
                       const responses = document.createElement("p");
-                      responses.innerHTML = data.result;
+                      responses.innerHTML = data.message;
                       taskSelector.remove();
                       deleteUserResponse.appendChild(responses);
                       setTimeout(() => {
