@@ -37,8 +37,11 @@ searchForm.addEventListener("submit", (event) => {
             userTodos.appendChild(taskName);
             userInfo.appendChild(userTodos);
 
-            let taskSelector = document.querySelector(
-              `#del-${user}-${outputValues}`
+            /* let taskSelector = document.querySelector(
+              `#delete-${outputValues}`
+            ); */
+            var taskSelector = document.querySelector(
+              `#delete-task`
             );
             userTodos.onclick = function () {
               let data = { todo: taskSelector };
@@ -59,11 +62,13 @@ searchForm.addEventListener("submit", (event) => {
                     .then((data) => {
                       const responses = document.createElement("p");
                       responses.innerHTML = data.result;
-                      taskSelector.remove();
+                      //taskSelector.remove();
+                     
                       deleteUserResponse.appendChild(responses);
                       setTimeout(() => {
                         responses.remove();
-                      }, 3000);
+                        window.location.reload()
+                      }, 2000);
                     })
                     .catch((e) => console.error(e))
                 )
@@ -85,7 +90,8 @@ searchForm.addEventListener("submit", (event) => {
                 res
                   .json()
                   .then((data) => {
-                    const userElement = document.querySelector(`.del-${user}`);
+                    const userElement = document.querySelector(`#delete-user`);
+                    //const userElement = document.querySelector(`.del-${user}`);
                     userElement.remove();
                     userInfo.innerHTML = `<p>${data.result}</p>`;
                     setTimeout(() => {
